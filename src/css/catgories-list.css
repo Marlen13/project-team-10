@@ -6,6 +6,7 @@
 }
 
 .category-thumb {
+  padding-right: 28px;
   max-width: 375px;
   height: 228px;
   overflow-y: scroll;
@@ -86,6 +87,22 @@
 .ctg-maintitle {
   margin-bottom: 40px;
 }
+
+.book-item-thumb {
+display: block;
+width: 335px;
+}
+@media screen and (min-width: 768px) {
+  .book-item-thumb {
+      width: 218px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+  .book-item-thumb {
+    max-width: 180px;
+  }
+}
 .book-img {
   display: block;
   margin-bottom: 14px;
@@ -126,6 +143,12 @@
 }
 .book-title {
   margin-bottom: 4px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: 700;
+    font-size: 16px;
+    line-height: 1.125;
 }
 
 .flex-container-item {

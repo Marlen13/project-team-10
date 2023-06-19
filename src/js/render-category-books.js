@@ -1,6 +1,6 @@
 // Рендер однієї секції категорії з книгами
 import { fetchBooksByExactCategory, fetchTopBooks } from './fetch-func';
-
+import { renderTopBooks } from './render-category-books';
 
 export function renderCategoryBooks() { }
 
@@ -11,16 +11,27 @@ import { modalWindow } from './modal-window'
 const categoryList = document.querySelector('.category-list');
 const bookThumb = document.querySelector('.tb-container');
 const headingEl = document.querySelector('.heading-primary');
+const allCtgrEl = document.querySelector('#bestOfbooks')
 
 categoryList.addEventListener('click', renderCategoryBooks);
 async function renderCategoryBooks(event) {
   const item = event.target.textContent;
-  headingEl.textContent = item;
-  headingEl.classList.add('ctg-maintitle');
-  bookThumb.classList.add('flex-container');
-
+  const itemFirst = allCtgrEl.textContent;
+  if (item === itemFirst) {
+    fetchTopBooks().then
+      (renderTopBooks);
+      headingEl.textContent = item;
+  }
+ 
   const data = await fetchBooksByExactCategory(item);
+  console.log(data);
   createMarkupBook(data);
+  // const startTitle = list_name
+  // const endTitle = list_name.split(' ')[list_name.split(' ').length - 1];
+  
+  headingEl.textContent = item;
+headingEl.classList.add('ctg-maintitle');
+bookThumb.classList.add('flex-container');
 }
 
 function createMarkupBook({ data }) {
@@ -29,7 +40,7 @@ function createMarkupBook({ data }) {
 
     .map(({ author, title, book_image, _id }) => {
       return `
-    <div class="flex-container-item"><a href=# class="global-link" data-id="${_id}">
+    <div class="flex-container-item"><a href=# class="book-item-thumb global-link" data-id="${_id}">
     <img class="book-img img" src="${book_image}" alt="${title}">
     <p class="book-title light-theme theme-switch global-p">${title}</p>
     <p class="tb-book-author global-p">${author}</p></a></div>`;

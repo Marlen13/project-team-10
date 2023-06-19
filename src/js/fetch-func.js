@@ -9,7 +9,6 @@ export function fetchAllCategories() {
     if (!response.ok) {
       throw new Error(response.status);
     }
-    // console.log(response);
     return response.json();
   });
 }
@@ -32,7 +31,6 @@ export function fetchExactBook() {}
 export async function fetchBooksByExactCategory(item) {
   try {
     const response = await axios(`${BASE_URL}/books/category?category=${item}`);
-    // console.log(response);
     return response;
   } catch (error) {
     console.log(error);
